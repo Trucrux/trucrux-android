@@ -97,7 +97,9 @@ do
 	elif [[ "$img" == *"imx8mq-trux-8MDVP-legacy-m4-wifi-lvds"* ]]; then
 		img_list+=("$img (Trucrux TRUX-MX8M on 8MDVP 1.x M4+WIFI+LVDS)")
 	elif [[ "$img" == *"imx8mq-trux-8MDVP-legacy-wifi-lvds"* ]]; then
-		img_list+=("$img (Trucrux TRUX-MX8M on 8MDVP 1.x WIFI+LVDS)")
+               img_list+=("$img (Trucrux TRUX-MX8M on 8MDVP 1.x WIFI+LVDS)")
+	elif [[ "$img" == *"imx8mq-trux-8MDVP-legacy-wifi-mipi"* ]]; then
+		img_list+=("$img (Trucrux TRUX-MX8M on 8MDVP 1.x WIFI+MIPI)")
 	elif [[ "$img" == *"imx8mq-trux-8MDVP-legacy-m4-wifi-hdmi"* ]]; then
 		img_list+=("$img (Trucrux TRUX-MX8M on 8MDVP 1.x M4+WIFI+HDMI)")
 	elif [[ "$img" == *"imx8mq-trux-8MDVP-legacy-wifi-hdmi"* ]]; then

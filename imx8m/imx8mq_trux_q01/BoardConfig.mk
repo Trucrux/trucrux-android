@@ -129,11 +129,13 @@ ifeq ($(TARGET_USE_DYNAMIC_PARTITIONS),true)
 	imx8mq-trux-8MDVP-legacy-sd-hdmi:imx8mq-trux-8MDVP-legacy-sd-hdmi.dtb \
 	imx8mq-trux-8MDVP-legacy-sd-lvds-dp:imx8mq-trux-8MDVP-legacy-sd-lvds-dp.dtb \
 	imx8mq-trux-8MDVP-legacy-sd-lvds:imx8mq-trux-8MDVP-legacy-sd-lvds.dtb \
+	imx8mq-trux-8MDVP-legacy-sd-mipi:imx8mq-trux-8MDVP-legacy-sd-mipi.dtb \
 	imx8mq-trux-8MDVP-legacy-sd-lvds-hdmi:imx8mq-trux-8MDVP-legacy-sd-lvds-hdmi.dtb \
 	imx8mq-trux-8MDVP-legacy-wifi-dp:imx8mq-trux-8MDVP-legacy-wifi-dp.dtb \
 	imx8mq-trux-8MDVP-legacy-wifi-hdmi:imx8mq-trux-8MDVP-legacy-wifi-hdmi.dtb \
 	imx8mq-trux-8MDVP-legacy-wifi-lvds-dp:imx8mq-trux-8MDVP-legacy-wifi-lvds-dp.dtb \
 	imx8mq-trux-8MDVP-legacy-wifi-lvds:imx8mq-trux-8MDVP-legacy-wifi-lvds.dtb \
+	imx8mq-trux-8MDVP-legacy-wifi-mipi:imx8mq-trux-8MDVP-legacy-wifi-mipi.dtb \
 	imx8mq-trux-8MDVP-legacy-wifi-lvds-hdmi:imx8mq-trux-8MDVP-legacy-wifi-lvds-hdmi.dtb \
 	imx8mq-trux-8MDVP-legacy-m4-sd-dp:imx8mq-trux-8MDVP-legacy-m4-sd-dp.dtb \
 	imx8mq-trux-8MDVP-legacy-m4-sd-hdmi:imx8mq-trux-8MDVP-legacy-m4-sd-hdmi.dtb \

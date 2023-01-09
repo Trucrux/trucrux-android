@@ -31,14 +31,14 @@ FB: ucmd mmc partconf 0 0 0 0
 FB: ucmd mmc partconf 0 0 0 0
 FB: flash bootloader0 u-boot-imx8mq-trux-q01.imx
 FB: flash gpt partition-table.img
-FB: flash dtbo_a dtbo-imx8mq-trux-8MDVP-legacy-wifi-lvds.img
-FB: flash dtbo_b dtbo-imx8mq-trux-8MDVP-legacy-wifi-lvds.img
+FB: flash dtbo_a dtbo-imx8mq-trux-8MDVP-legacy-wifi-mipi.img
+FB: flash dtbo_b dtbo-imx8mq-trux-8MDVP-legacy-wifi-mipi.img
 FB: flash boot_a boot.img
 FB: flash boot_b boot.img
 FB: flash vendor_boot_a vendor_boot.img
 FB: flash vendor_boot_b vendor_boot.img
-FB: flash vbmeta_a vbmeta-imx8mq-trux-8MDVP-legacy-wifi-lvds.img --disable-verity
-FB: flash vbmeta_b vbmeta-imx8mq-trux-8MDVP-legacy-wifi-lvds.img --disable-verity
+FB: flash vbmeta_a vbmeta-imx8mq-trux-8MDVP-legacy-wifi-mipi.img --disable-verity
+FB: flash vbmeta_b vbmeta-imx8mq-trux-8MDVP-legacy-wifi-mipi.img --disable-verity
 FB[-t 600000]: flash super super.img
 FB[-t 600000]: erase misc
 FB[-t 600000]: erase presistdata
