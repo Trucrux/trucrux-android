@@ -12,7 +12,7 @@ readonly ABSOLUTE_DIRECTORY=`dirname ${ABSOLUTE_FILENAME}`
 readonly SCRIPT_POINT=`pwd`/sources/meta-trucrux/scripts/  #meta-trucrux-fslc/scripts/
 
 ANDROID_SCRIPTS_PATH=${SCRIPT_POINT}/trux_mk_yocto_sdcard/trucrux_scripts
-ANDROID_BUILD_ROOT=/media/tru-ser-01/Storage1_seagate/imx8/imx8mq/codesetup/Android/Android-11/android_build/
+ANDROID_BUILD_ROOT=~/trux_imx-android-11.0.0_1.0.0/android_build/
 
 TEMP_DIR=./trux_tmp
 ROOTFS_MOUNT_DIR=${TEMP_DIR}/rootfs
