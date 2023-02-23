@@ -124,6 +124,8 @@ do
 		img_list+=("$img (Trucrux TRUX-MX8M on 8MDVP 2.x M4+WIFI+HDMI)")
 	elif [[ "$img" == *"imx8mq-trux-8MDVP-wifi-hdmi"* ]]; then
 		img_list+=("$img (Trucrux TRUX-MX8M on 8MDVP 2.x WIFI+HDMI)")
+	elif [[ "$img" == *"imx8mq-trux-8MDVP-wifi-mipi"* ]]; then
+                img_list+=("$img (Trucrux TRUX-MX8M on 8MDVP 2.x WIFI+MIPI)")
 	else
 		img_list+=($img)
 	fi

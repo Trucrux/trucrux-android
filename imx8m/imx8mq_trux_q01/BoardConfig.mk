@@ -122,9 +122,11 @@ ifeq ($(TARGET_USE_DYNAMIC_PARTITIONS),true)
 	imx8mq-trux-8MDVP-wifi-lvds:imx8mq-trux-8MDVP-wifi-lvds.dtb \
 	imx8mq-trux-8MDVP-wifi-lvds-hdmi:imx8mq-trux-8MDVP-wifi-lvds-hdmi.dtb \
 	imx8mq-trux-8MDVP-wifi-hdmi:imx8mq-trux-8MDVP-wifi-hdmi.dtb \
+	imx8mq-trux-8MDVP-wifi-mipi:imx8mq-trux-8MDVP-wifi-mipi.dtb \
 	imx8mq-trux-8MDVP-sd-lvds-hdmi:imx8mq-trux-8MDVP-sd-lvds-hdmi.dtb \
 	imx8mq-trux-8MDVP-sd-lvds:imx8mq-trux-8MDVP-sd-lvds.dtb \
 	imx8mq-trux-8MDVP-sd-hdmi:imx8mq-trux-8MDVP-sd-hdmi.dtb \
+	imx8mq-trux-8MDVP-sd-mipi:imx8mq-trux-8MDVP-sd-mipi.dtb \
 	imx8mq-trux-8MDVP-legacy-sd-dp:imx8mq-trux-8MDVP-legacy-sd-dp.dtb \
 	imx8mq-trux-8MDVP-legacy-sd-hdmi:imx8mq-trux-8MDVP-legacy-sd-hdmi.dtb \
 	imx8mq-trux-8MDVP-legacy-sd-lvds-dp:imx8mq-trux-8MDVP-legacy-sd-lvds-dp.dtb \
