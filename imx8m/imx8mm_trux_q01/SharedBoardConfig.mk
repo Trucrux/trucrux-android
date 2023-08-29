@@ -64,8 +64,7 @@ BOARD_VENDOR_KERNEL_MODULES += \
 
 else
 BOARD_VENDOR_KERNEL_MODULES +=     \
-    $(KERNEL_OUT)/drivers/net/wireless/broadcom/brcm80211/brcmutil/brcmutil.ko \
-    $(KERNEL_OUT)/drivers/net/wireless/broadcom/brcm80211/brcmfmac/brcmfmac.ko
+     $(KERNEL_OUT)/drivers/net/wireless/bcmdhd/bcmdhd.ko
 endif
 
 # CONFIG_CLK_IMX8MM: clk-imx8mm.ko

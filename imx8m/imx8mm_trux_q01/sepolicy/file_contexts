@@ -42,3 +42,7 @@
 
 /dev/block/pmem0  u:object_r:rebootescrow_device:s0
 
+
+#The UART/USB device node that connected to bluetooth module – i.e. /dev/ttyUSB0 or /dev/ttymxc3
+/dev/ttymxc3			u:object_r:hci_attach_dev:s0
+/vendor/bin/hw/android\.hardware\.bluetooth@1\.0-service u:object_r:hal_bluetooth_default_exec:s0

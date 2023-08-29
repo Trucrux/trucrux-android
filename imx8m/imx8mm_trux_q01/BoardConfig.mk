@@ -113,6 +113,7 @@ endif
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(IMX_DEVICE_PATH)/bluetooth
 BOARD_CUSTOM_BT_CONFIG := $(BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR)/vnd_config.txt
 BOARD_HAVE_BLUETOOTH_BCM := true
+BOARD_HAVE_BLUETOOTH := true
 
 ifeq ($(TARGET_USERIMAGES_USE_UBIFS),true)
 ifeq ($(TARGET_USERIMAGES_USE_EXT4),true)
@@ -123,11 +124,7 @@ endif
 BOARD_PREBUILT_DTBOIMAGE := out/target/product/imx8mm_trux_q01/dtbo-imx8mm-trux-8MDVP.img
 
 TARGET_BOARD_DTS_CONFIG := \
-	imx8mm-trux-8MDVP:imx8mm-trux-8MDVP.dtb \
-	imx8mm-trux-8MDVP-m4:imx8mm-trux-8MDVP-m4.dtb \
-	imx8mm-trux-8MDVP-legacy:imx8mm-trux-8MDVP-legacy.dtb \
-	imx8mm-trux-8MDVP-legacy-m4:imx8mm-trux-8MDVP-legacy-m4.dtb \
-
+	imx8mm-trux-8MDVP:imx8mm-trux-8MDVP.dtb
 
 BOARD_SEPOLICY_DIRS := \
        device/nxp/imx8m/sepolicy \
