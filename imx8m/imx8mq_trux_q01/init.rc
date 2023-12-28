@@ -20,7 +20,7 @@ on early-init
 
 on early-init
     start early_init_sh
-    start init_brcm_wifibt_sh
+    start init_bcmdhd_wifibt_sh
     # Set the host name which used in console
     export HOSTNAME iMX8MQ-trux
 
@@ -33,7 +33,7 @@ on early-init
     # Set the density to 160 dpi to match LCD.
     setprop ro.sf.lcd_density 160
 
-service init_brcm_wifibt_sh /vendor/bin/init.brcm.wifibt.sh
+service init_bcmdhd_wifibt_sh /vendor/bin/init.brcm.wifibt.sh
     class main
     user root
     group root system
@@ -246,7 +246,7 @@ service bugreport /system/bin/dumpstate -d -p -B -z \
     oneshot
     keycodes 114 115 116
 
-on property:sys.brcm.wifibt.completed=1
+on property:sys.bcmdhd.wifibt.completed=1
     start early_init_sh
 
 on property:vendor.wc_transport.start_hci=true
