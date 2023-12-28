@@ -2,7 +2,7 @@
 # It will inherit from FSL core product which in turn inherit from Google generic
 
 IMX_DEVICE_PATH := device/trucrux/imx8m/imx8mq_trux_q01
-BCM_FIRMWARE_PATH := vendor/trucrux/bcm_4343w_fw
+BCM_FIRMWARE_PATH := vendor/trucrux/bcmdhd
 
 # configs shared between uboot, kernel and Android rootfs
 include $(IMX_DEVICE_PATH)/SharedBoardConfig.mk
@@ -166,7 +166,7 @@ PRODUCT_CHARACTERISTICS := tablet
 PRODUCT_AAPT_CONFIG += xlarge large tvdpi hdpi xhdpi xxhdpi
 
 PRODUCT_COPY_FILES += \
-       $(IMX_DEVICE_PATH)/init.brcm.wifibt.sh:vendor/bin/init.brcm.wifibt.sh
+       $(IMX_DEVICE_PATH)/init.bcmdhd.wifibt.sh:vendor/bin/init.bcmdhd.wifibt.sh
 
 # GPU openCL g2d
 PRODUCT_COPY_FILES += \
@@ -263,8 +263,11 @@ PRODUCT_PACKAGES += \
 
 # Bluetooth HAL
 PRODUCT_PACKAGES += \
+    libbt-vendor \
     android.hardware.bluetooth@1.0-impl \
-    android.hardware.bluetooth@1.0-service
+    android.hardware.bluetooth@1.0-service \
+    android.hardware.bluetooth@1.0-service.rc
+
 
 # WiFi HAL
 PRODUCT_PACKAGES += \
@@ -286,13 +289,12 @@ PRODUCT_COPY_FILES += \
     external/wireless-regdb/regulatory.db.p7s:vendor/firmware/regulatory.db.p7s
 
 PRODUCT_COPY_FILES += \
-    $(BCM_FIRMWARE_PATH)/brcm/BCM4335C0.hcd:vendor/firmware/brcm/BCM4335C0.hcd \
-    $(BCM_FIRMWARE_PATH)/brcm/BCM43430A1.hcd:vendor/firmware/bcm/BCM43430A1.hcd \
-    $(BCM_FIRMWARE_PATH)/brcm/brcmfmac4339-sdio.bin:vendor/firmware/brcm/brcmfmac4339-sdio.bin \
-    $(BCM_FIRMWARE_PATH)/brcm/brcmfmac4339-sdio.txt:vendor/firmware/brcm/brcmfmac4339-sdio.txt \
-    $(BCM_FIRMWARE_PATH)/brcm/brcmfmac43430-sdio.bin:vendor/firmware/brcm/brcmfmac43430-sdio.bin \
-    $(BCM_FIRMWARE_PATH)/brcm/brcmfmac43430-sdio.txt:vendor/firmware/brcm/brcmfmac43430-sdio.txt \
-    $(BCM_FIRMWARE_PATH)/brcm/brcmfmac43430-sdio.clm_blob:vendor/firmware/brcm/brcmfmac43430-sdio.clm_blob
+    $(BCM_FIRMWARE_PATH)/bcmdhd/BCM4362A2_001.003.006.1012.1017.hcd:vendor/firmware/bcmdhd/BCM4362A2_001.003.006.1012.1017.hcd \
+    $(BCM_FIRMWARE_PATH)/bcmdhd/fw_bcm43752a2_ag_apsta.bin:vendor/firmware/bcmdhd/fw_bcm43752a2_ag_apsta.bin \
+    $(BCM_FIRMWARE_PATH)/bcmdhd/nvram_ap6275s_m2.txt:vendor/firmware/bcmdhd/nvram_ap6275s_m2.txt \
+    $(BCM_FIRMWARE_PATH)/bcmdhd/fw_bcm43752a2_ag.bin:vendor/firmware/bcmdhd/fw_bcm43752a2_ag.bin \
+    $(BCM_FIRMWARE_PATH)/bcmdhd/nvram_ap6275s.txt:vendor/firmware/bcmdhd/nvram_ap6275s.txt \
+    $(BCM_FIRMWARE_PATH)/bcmdhd/clm_bcm43752a2_ag.blob:vendor/firmware/bcmdhd/clm_bcm43752a2_ag.blob
 
 # hardware backed keymaster service
 ifeq ($(PRODUCT_IMX_TRUSTY),true)
