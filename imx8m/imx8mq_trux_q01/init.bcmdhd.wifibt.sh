@@ -75,7 +75,7 @@ wifi_up()
 	echo ${WIFI_MMC_HOST} > /sys/bus/platform/drivers/sdhci-esdhc-imx/bind
 	
 	# Load WIFI driver
-	modprobe -d /vendor/lib/modules brcmfmac p2pon=1
+	modprobe -d /vendor/lib/modules bcmdhd p2pon=1
 
 	# Load Ethernet driver
 	modprobe -d /vendor/lib/modules fec
@@ -85,7 +85,7 @@ wifi_up()
 wifi_down()
 {
 	# Unload WIFI driver
-	modprobe -d /vendor/lib/modules -r brcmfmac
+	modprobe -d /vendor/lib/modules -r bcmdhd
 
 	# Unload Ethernet driver
 	modprobe -d /vendor/lib/modules -r fec
@@ -115,8 +115,8 @@ wifi_down()
 wifi_is_available()
 {
         # Read SOM options EEPROM field
-        opt=$(i2cget -f -y 0x0 0x52 0x20)
-
+        #opt=$(i2cget -f -y 0x0 0x52 0x20)
+	opt=0x1
         # Check WIFI bit in SOM options
         if [ $((opt & 0x1)) -eq 1 ]; then
                 return 0
@@ -239,6 +239,6 @@ echo 0 > /sys/class/gpio/gpio${BT_BUF_GPIO}/value
 
 # always set property even if wifi failed
 # as property value "1" is expected in early-boot trigger
-setprop sys.brcm.wifibt.completed 1
+setprop sys.bcmdhd.wifibt.completed 1
 
 exit 0

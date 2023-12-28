@@ -25,7 +25,7 @@
 /dev/block/platform/soc@0/soc@0\:bus@30800000/30b40000\.mmc/by-name/super            u:object_r:super_block_device:s0
 
 #peripheral
-/vendor/bin/init\.brcm\.wifibt\.sh u:object_r:init-brcm-wifibt-sh_exec:s0
+/vendor/bin/init\.bcmdhd\.wifibt\.sh u:object_r:init-bcmdhd-wifibt-sh_exec:s0
 /vendor/bin/magd                u:object_r:sensors_exec:s0
 /vendor/bin/fsl_sensor_fusion   u:object_r:sensors_exec:s0
 /dev/mma8x5x                    u:object_r:sensors_device:s0
@@ -42,3 +42,7 @@
 /vendor/bin/hw/android\.hardware\.thermal@2\.0-service.imx         u:object_r:hal_thermal_default_exec:s0
 
 /vendor/bin/hw/android\.hardware\.media\.c2@1\.0-service    u:object_r:mediacodec_exec:s0
+
+#The UART/USB device node that connected to bluetooth module – i.e. /dev/ttyUSB0 or /dev/ttymxc3
+/dev/ttymxc3			u:object_r:hci_attach_dev:s0
+/vendor/bin/hw/android\.hardware\.bluetooth@1\.0-service u:object_r:hal_bluetooth_default_exec:s0
