@@ -3,9 +3,9 @@
 # Product-specific compile-time definitions.
 #
 
-BCM_FIRMWARE_PATH := vendor/trucrux/bcm_4343w_fw
-KERNEL_IMX_PATH := vendor/trucrux
-UBOOT_IMX_PATH := vendor/trucrux
+BCM_FIRMWARE_PATH := vendor/trucrux/bcmdhd
+KERNEL_IMX_PATH := vendor/trucurx
+UBOOT_IMX_PATH := vendor/trucurx
 FSL_PROPRIETARY_PATH := vendor/nxp
 LINUX_FIRMWARE_PATH := vendor/nxp
 FSL_CODEC_PATH := vendor/nxp
@@ -18,6 +18,12 @@ LINUX_FIRMWARE_IMX_PATH := vendor/nxp
 IMX_MCU_SDK_PATH := vendor/nxp
 IMX_ANDROID_MM_PATH := vendor/nxp
 IMX_MEDIA_CODEC_XML_PATH:= vendor/nxp/imx_android_mm
+
+FSL_RESTRICTED_CODEC_PATH := vendor/nxp-private
+GPU_VIV6_PATH := vendor/nxp-private
+VVCAM_PATH := vendor/nxp-opensource/verisilicon_sw_isp_vvcam
+RESTRICTED_APP_PATH := vendor/nxp-private
+IMX_SECURITY_PATH := vendor/nxp-private/security
 
 IMX_LIB_PATH := vendor/nxp-opensource
 IMX_MKIMAGE_PATH := vendor/nxp-opensource

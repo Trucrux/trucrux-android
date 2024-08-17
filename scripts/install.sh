@@ -3,9 +3,8 @@
 # install
 #
 # This script must be run from the Android main directory.
-# trucrux/install must be at ~/q1000_100_build
 #
-# Trucrux TRUX-MX8M patches for Android 11.0.0_1 1.0.0
+# Trucrux TRUX-MX8M patches for Android 13.0.0 1.2.0
 
 set -e
 #set -x
@@ -20,19 +19,26 @@ readonly ABSOLUTE_DIRECTORY=$(dirname ${ABSOLUTE_FILENAME})
 readonly SCRIPT_POINT=${ABSOLUTE_DIRECTORY}
 readonly SCRIPT_START_DATE=$(date +%Y%m%d)
 readonly ANDROID_DIR="${SCRIPT_POINT}/../../.."
-readonly G_CROSS_COMPILER_PATH=${ANDROID_DIR}/prebuilts/gcc/linux-x86/aarch64/gcc-arm-8.3-2019.03-x86_64-aarch64-linux-gnu
+readonly G_CROSS_COMPILER_PATH=${ANDROID_DIR}/prebuilts/gcc/linux-x86/aarch64/gcc-arm-8.3-2019.03-x86_64-aarch64-elf
 readonly G_CROSS_COMPILER_ARCHIVE=gcc-arm-8.3-2019.03-x86_64-aarch64-linux-gnu.tar.xz
 readonly G_EXT_CROSS_COMPILER_LINK="https://developer.arm.com/-/media/Files/downloads/gnu-a/8.3-2019.03/binrel/gcc-arm-8.3-2019.03-x86_64-aarch64-linux-gnu.tar.xz"
+readonly C_LANG_LINK="https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86"
+readonly C_LANG_DIR="/opt/prebuilt-android-clang-var-0fc0715d9392c/"
 
-readonly BASE_BRANCH_NAME="android-11.0.0_1.0.0"
+readonly BASE_BRANCH_NAME="android-13.0.0_1.2.0"
 
 ## git variables get from base script!
-readonly _EXTPARAM_BRANCH="trux_android-11.0.0_1.0.0"
+readonly _EXTPARAM_BRANCH="android-13.0.0_1.2.0-trux"
 
+# Android TAG from release notes
+#readonly ANDROID_TAG="android-13.0.0_r30"
 ## dirs ##
 readonly TRUCRUX_PATCHS_DIR="${SCRIPT_POINT}/platform"
 readonly TRUCRUX_SH_DIR="${SCRIPT_POINT}/sh"
 VENDOR_BASE_DIR=${ANDROID_DIR}/vendor/trucrux
+LIBBT=$(readlink -f "${ANDROID_DIR}/hardware/broadcom/libbt")
+SEPOLICY=$(readlink -f "${ANDROID_DIR}/system/sepolicy")
+
 
 readonly GCC_ARM_NONE_EABI_MD5SUM="f55f90d483ddb3bcf4dae5882c2094cd"
 readonly GCC_ARM_NONE_TOOL="gcc-arm-none-eabi-8-2018-q4-major-linux.tar.bz2"
@@ -115,7 +121,11 @@ do
 	cd ${ANDROID_DIR}/${_git_p}/ > /dev/null
 	
 	if [[ `git branch --list $_EXTPARAM_BRANCH` ]] ; then
-		git checkout tags/${BASE_BRANCH_NAME}
+		#if [[ ${PWD} == ${LIBBT} ]] || [[ ${PWD} == ${SEPOLICY} ]]; then
+		#	git checkout tags/${ANDROID_TAG}
+		#else
+			git checkout tags/${BASE_BRANCH_NAME}
+		#fi
 		git branch -D ${_EXTPARAM_BRANCH}
 		git checkout -b ${_EXTPARAM_BRANCH} || {
 			pr_warning "Branch ${_EXTPARAM_BRANCH} is present!"
@@ -129,7 +139,6 @@ do
 
 	pr_info "Apply patches for this git: \"${_git_p}/\""
 	git am ${TRUCRUX_PATCHS_DIR}/${_ddd}/*
-
 
 	cd - > /dev/null
 done
@@ -145,11 +154,21 @@ pr_info "#######################"
 # get arm toolchain
 (( `ls ${G_CROSS_COMPILER_PATH} 2>/dev/null | wc -l` == 0 )) && {
 	pr_info "Get and unpack cross compiler";
+	mkdir -p ${ANDROID_DIR}/prebuilts/gcc/linux-x86/aarch64/
 	cd ${ANDROID_DIR}/prebuilts/gcc/linux-x86/aarch64/
 	wget ${G_EXT_CROSS_COMPILER_LINK}
 	tar -xJf ${G_CROSS_COMPILER_ARCHIVE} \
 		-C .
 };
+
+pr_info "#######################"
+pr_info "# Clang setup #"
+pr_info "#######################"
+if [[ ! -d ${C_LANG_DIR} ]] ; then
+	sudo git clone ${C_LANG_LINK} ${C_LANG_DIR} -b master
+	cd ${C_LANG_DIR}
+	sudo git checkout 0fc0715d9392ca616605c07750211d7ca71f4e36
+fi
 
 pr_info "#####################"
 pr_info "# Done             #"

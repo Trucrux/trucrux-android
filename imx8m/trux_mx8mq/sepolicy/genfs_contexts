@@ -1,0 +1,10 @@
+genfscon sysfs /devices/platform/backlight/backlight/backlight u:object_r:sysfs_leds:s0
+genfscon sysfs /devices/platform/wifi_rfkill/rfkill/rfkill0 u:object_r:sysfs_rfkill:s0
+genfscon sysfs /devices/platform/bt_rfkill/rfkill/rfkill1 u:object_r:sysfs_rfkill:s0
+
+
+#RTC
+genfscon sysfs /devices/platform/soc@0/soc@0/30800000/30a30000.i2c/i2c-1/1-0068/rtc u:object_r:sysfs_rtc:s0
+
+# for usb gadget HAL to add watch on the sysfs path of usb controller
+genfscon sysfs /devices/platform/soc@0/38100000.usb                                     u:object_r:sysfs_usb_device:s0

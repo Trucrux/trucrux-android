@@ -9,29 +9,26 @@ readonly SCRIPT_VERSION="0.8"
 #### global variables ####
 readonly ABSOLUTE_FILENAME=`readlink -e "$0"`
 readonly ABSOLUTE_DIRECTORY=`dirname ${ABSOLUTE_FILENAME}`
-readonly SCRIPT_POINT=`pwd`/sources/meta-trucrux/scripts/  #meta-trucrux-fslc/scripts/
+readonly SCRIPT_POINT=`pwd`/sources/meta-trucrux/scripts/
 
 ANDROID_SCRIPTS_PATH=${SCRIPT_POINT}/trux_mk_yocto_sdcard/trucrux_scripts
-ANDROID_BUILD_ROOT=~/trux_imx-android-11.0.0_1.0.0/android_build/
+ANDROID_BUILD_ROOT=~/imx-android/android_build
 
-TEMP_DIR=./trux_tmp
+TEMP_DIR=./var_tmp
 ROOTFS_MOUNT_DIR=${TEMP_DIR}/rootfs
 
 help() {
 	bn=`basename $0`
-	echo " Usage: MACHINE=<imx8mq-trux-q01|imx8mm-trux-q01|imx8mp-trux> $bn device_node"
+	echo " Usage: MACHINE=<imx8mq-trux-q01|imx8mm-trux-q01> $bn device_node"
 	echo
 }
 
 case $MACHINE in
 	"imx8mq-trux-q01")
-		ANDROID_IMGS_PATH=${ANDROID_BUILD_ROOT}/out/target/product/imx8mq_trux_q01
-		;;
-	"imx8mp-trux")
-		ANDROID_IMGS_PATH=${ANDROID_BUILD_ROOT}/out/target/product/trux_mx8mp
+		ANDROID_IMGS_PATH=${ANDROID_BUILD_ROOT}/out/target/product/trux_mx8mq
 		;;
 	"imx8mm-trux-q01")
-		ANDROID_IMGS_PATH=${ANDROID_BUILD_ROOT}/out/target/product/imx8mm_trux_q01
+		ANDROID_IMGS_PATH=${ANDROID_BUILD_ROOT}/out/target/product/trux_mx8mm
 		;;
 	*)
 		help
@@ -88,15 +85,10 @@ function copy_android
 	mkdir -p ${ROOTFS_MOUNT_DIR}/opt/images/Android
 
 	cp ${ANDROID_IMGS_PATH}/u-boot-${MACHINE}*.imx	${ROOTFS_MOUNT_DIR}/opt/images/Android/
-	cp ${ANDROID_IMGS_PATH}/boot.img			${ROOTFS_MOUNT_DIR}/opt/images/Android/
+	cp ${ANDROID_IMGS_PATH}/boot-imx.img			${ROOTFS_MOUNT_DIR}/opt/images/Android/boot.img
+	cp ${ANDROID_IMGS_PATH}/init_boot.img			${ROOTFS_MOUNT_DIR}/opt/images/Android/
 	cp ${ANDROID_IMGS_PATH}/dtbo-*.img			${ROOTFS_MOUNT_DIR}/opt/images/Android/
 	cp ${ANDROID_IMGS_PATH}/vbmeta-*.img			${ROOTFS_MOUNT_DIR}/opt/images/Android/
-
-	if [[ "${MACHINE}" = "imx8qm-trux-som" ]]; then
-		echo "Copying firmware images to /opt/images/"
-		cp ${ANDROID_IMGS_PATH}/vendor/firmware/hdmitxfw.bin	${ROOTFS_MOUNT_DIR}/opt/images/Android/
-		cp ${ANDROID_IMGS_PATH}/vendor/firmware/dpfw.bin	${ROOTFS_MOUNT_DIR}/opt/images/Android/
-	fi
 
 	if [ -e "${ANDROID_IMGS_PATH}/super.img" ]; then
 		echo "Copying super image to /opt/images/"
@@ -119,24 +111,15 @@ function copy_android
                 sync | pv -t
 	fi
 
-#	if [[ "${MACHINE}" = "imx8mm-trux" ]]; then
-#                echo "Copying M4 demo images to /opt/images/"
-#                pv ${ANDROID_BUILD_ROOT}/device/trucrux/common/rpmsg_lite_pingpong_rtos_linux_remote.bin > \
-#                            ${ROOTFS_MOUNT_DIR}/opt/images/Android/rpmsg_lite_pingpong_rtos_linux_remote.bin
-#                pv ${ANDROID_BUILD_ROOT}/device/trucrux/common/rpmsg_lite_pingpong_rtos_linux_remote.elf > \
-#                           ${ROOTFS_MOUNT_DIR}/opt/images/Android/rpmsg_lite_pingpong_rtos_linux_remote.elf
-#                pv ${ANDROID_BUILD_ROOT}/device/trucrux/common/hello_world.elf > \
-#                             ${ROOTFS_MOUNT_DIR}/opt/images/Android/hello_world.elf
-#                sync | pv -t
-#	elif [[ "${MACHINE}" = "imx8mq-trux" ]]; then
-#                echo "Copying M4 demo images to /opt/images/"
-#                pv ${ANDROID_BUILD_ROOT}/device/trucrux/imx8m/trux_mx8mq/cm_rpmsg_lite_pingpong_rtos_linux_remote.bin.debug > \
-#				${ROOTFS_MOUNT_DIR}/opt/images/Android/cm_rpmsg_lite_pingpong_rtos_linux_remote.bin
-#                pv ${ANDROID_BUILD_ROOT}/device/trucrux/imx8m/trux_mx8mq/cm_rpmsg_lite_pingpong_rtos_linux_remote.elf.debug > \
-#				${ROOTFS_MOUNT_DIR}/opt/images/Android/rpmsg_lite_pingpong_rtos_linux_remote.elf
-#
-#                sync | pv -t
-#	fi
+	if [[ "${MACHINE}" = "imx8mm-trux-q01" ]]; then
+                echo "Copying M4 demo images to /opt/images/"
+                pv ${ANDROID_BUILD_ROOT}/device/trucrux/imx8m/trux_mx8mm/rpmsg_lite_pingpong_rtos_linux_remote.bin > \
+                            ${ROOTFS_MOUNT_DIR}/opt/images/Android/rpmsg_lite_pingpong_rtos_linux_remote.bin
+                pv ${ANDROID_BUILD_ROOT}/device/trucrux/imx8m/trux_mx8mm/rpmsg_lite_pingpong_rtos_linux_remote.elf > \
+                           ${ROOTFS_MOUNT_DIR}/opt/images/Android/rpmsg_lite_pingpong_rtos_linux_remote.elf
+                sync | pv -t
+	fi
+
 }
 
 function copy_android_scripts
