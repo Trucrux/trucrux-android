@@ -1,14 +1,14 @@
-From f0758df44fd83fdce4ca0c61abf94621d51e58f0 Mon Sep 17 00:00:00 2001
-From: Harshesh Valera <harshesh.v@variscite.com>
-Date: Tue, 13 Jun 2023 22:51:41 -0700
-Subject: [PATCH 2/6] imx8m: Update path of GKI images for OTA
+From 887b2d7d63d75145ba51e9174334ef3a7d71e8cc Mon Sep 17 00:00:00 2001
+From: shindesaahil <sahil.shinde@trunexa.com>
+Date: Sun, 18 Aug 2024 10:25:09 +0530
+Subject: [PATCH 2/3] imx8m: Update path of GKI images for OTA
 
 ---
  imx8m/BoardConfigCommon.mk | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/imx8m/BoardConfigCommon.mk b/imx8m/BoardConfigCommon.mk
-index 5e61078..40bdabd 100644
+index 5e610780..963be837 100644
 --- a/imx8m/BoardConfigCommon.mk
 +++ b/imx8m/BoardConfigCommon.mk
 @@ -86,7 +86,7 @@ TARGET_BOARD_KERNEL_HEADERS := $(CONFIG_REPO_PATH)/common/kernel-headers
@@ -16,10 +16,10 @@ index 5e61078..40bdabd 100644
  TARGET_IMX_KERNEL ?= false
  ifeq ($(TARGET_IMX_KERNEL),false)
 -BOARD_PREBUILT_BOOTIMAGE := vendor/nxp/fsl-proprietary/gki/boot.img
-+BOARD_PREBUILT_BOOTIMAGE := device/variscite/imx8m/$(TARGET_PRODUCT)/gki/boot.img
++BOARD_PREBUILT_BOOTIMAGE := device/trucrux/imx8m/$(TARGET_PRODUCT)/gki/boot.img
  TARGET_NO_KERNEL := true
  endif
  
 -- 
-2.25.1
+2.34.1
 

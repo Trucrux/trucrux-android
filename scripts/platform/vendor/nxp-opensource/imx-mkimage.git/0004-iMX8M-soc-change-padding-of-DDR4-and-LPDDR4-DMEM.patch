@@ -1,18 +1,14 @@
-From 319ca72460d6a45305b0152d93af78bdea33373c Mon Sep 17 00:00:00 2001
-From: Nate Drude <nate.d@variscite.com>
-Date: Mon, 28 Feb 2022 10:42:42 -0600
-Subject: [PATCH 4/4] iMX8M: soc: change padding of DDR4 and LPDDR4 DMEM
- firmware
+From d2b5afd76dd04dfa8123a5564546a07c83762364 Mon Sep 17 00:00:00 2001
+From: shindesaahil <sahil.shinde@trunexa.com>
+Date: Sun, 18 Aug 2024 11:11:17 +0530
+Subject: [PATCH 4/5] iMX8M: soc: change padding of DDR4 and LPDDR4 DMEM
 
-See https://github.com/varigit/uboot-imx/commit/3b5aa3fc1ce23ffe8f790be60efaa495e99f033a
-
-Signed-off-by: Nate Drude <nate.d@variscite.com>
 ---
  iMX8M/soc.mak | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/iMX8M/soc.mak b/iMX8M/soc.mak
-index 8661904..f24825f 100644
+index 94ba481..11797b1 100644
 --- a/iMX8M/soc.mak
 +++ b/iMX8M/soc.mak
 @@ -98,7 +98,7 @@ lpddr4_dmem_2d = lpddr4_pmu_train_2d_dmem$(LPDDR_FW_VERSION).bin
@@ -34,5 +30,5 @@ index 8661904..f24825f 100644
  	@cat ddr4_imem_1d_pad.bin ddr4_dmem_1d_pad.bin > ddr4_1d_fw.bin
  	@cat ddr4_imem_2d_pad.bin $(ddr4_dmem_2d) > ddr4_2d_fw.bin
 -- 
-2.25.1
+2.34.1
 

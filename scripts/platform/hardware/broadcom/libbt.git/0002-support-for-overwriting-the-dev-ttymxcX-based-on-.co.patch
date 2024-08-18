@@ -1,18 +1,18 @@
-From 20b6e36f5d0a0b9b779d6df82e24b44f9c168e86 Mon Sep 17 00:00:00 2001
-From: Harshesh Valera <harshesh.v@variscite.com>
-Date: Thu, 16 Mar 2023 21:40:17 -0700
+From ed24cfb724c43a02daf817941a8ea379183bead8 Mon Sep 17 00:00:00 2001
+From: shindesaahil <sahil.shinde@trunexa.com>
+Date: Sun, 18 Aug 2024 10:48:56 +0530
 Subject: [PATCH 2/2] support for overwriting the /dev/ttymxcX based on .conf
- file
+ wq bluetooth: Update generic hw_settlement delay to 200 msec
 
-Change-Id: Ibd4977319fd7e21beb759f4dcc4f7cdd72d13454
-Signed-off-by: Harshesh Valera <harshesh.v@variscite.com>
+Change-Id: Id1e2038c2f2eb9902243555409cfdac54928ea6a
 ---
  src/conf.c           |  1 +
+ src/hardware.c       |  2 +-
  src/userial_vendor.c | 19 ++++++++++++++++++-
- 2 files changed, 19 insertions(+), 1 deletion(-)
+ 3 files changed, 20 insertions(+), 2 deletions(-)
 
 diff --git a/src/conf.c b/src/conf.c
-index 7783f5a..722ea5e 100644
+index 98f753c..bb1897e 100644
 --- a/src/conf.c
 +++ b/src/conf.c
 @@ -129,6 +129,7 @@ static const conf_entry_t conf_table[] = {
@@ -23,8 +23,21 @@ index 7783f5a..722ea5e 100644
  #if (VENDOR_LIB_RUNTIME_TUNING_ENABLED == TRUE)
      {"FwPatchSettlementDelay", hw_set_patch_settlement_delay, 0},
  #endif
+diff --git a/src/hardware.c b/src/hardware.c
+index 8f96d60..0ea77b0 100644
+--- a/src/hardware.c
++++ b/src/hardware.c
+@@ -234,7 +234,7 @@ static uint8_t bt_sco_i2spcm_param[SCO_I2SPCM_PARAM_SIZE] =
+ static const fw_settlement_entry_t fw_settlement_table[] = {
+     {"BCM43241", 200},
+     {"BCM43341", 100},
+-    {(const char *) NULL, 100}  // Giving the generic fw settlement delay setting.
++    {(const char *) NULL, 200}  // Giving the generic fw settlement delay setting.
+ };
+ 
+ 
 diff --git a/src/userial_vendor.c b/src/userial_vendor.c
-index c727061..75fa83b 100644
+index c727061..9431965 100644
 --- a/src/userial_vendor.c
 +++ b/src/userial_vendor.c
 @@ -36,6 +36,7 @@
@@ -41,25 +54,25 @@ index c727061..75fa83b 100644
  {
 -    strcpy(vnd_userial.port_name, p_conf_value);
 +    char board_type[PROPERTY_VALUE_MAX];
-+    property_get("ro.boot.vendor.board", board_type, "dart");
++    property_get("ro.boot.vendor.board", board_type, "trux");
 +
 +    if (strncmp(p_conf_name,"BT_SOM_UART", 11) == 0) {
 +        ALOGE("Board Type (%s), pconf_name = %s, pconf_value = %s", board_type, p_conf_name, p_conf_value);
-+        if (strncmp(board_type, "varsom", 6) == 0) {
++        if (strncmp(board_type, "imx8m", 6) == 0) {
 +            ALOGE("Updating the serial port for SOM");
-+	    strcpy(vnd_userial.port_name, p_conf_value);
++           strcpy(vnd_userial.port_name, p_conf_value);
 +            return 0;
-+	}
-+	else {
++       }
++       else {
 +            ALOGE("Returning");
 +            return 0;
-+	}
++       }
 +    } else {
-+	    strcpy(vnd_userial.port_name, p_conf_value);
++           strcpy(vnd_userial.port_name, p_conf_value);
 +    }
  
      return 0;
  }
 -- 
-2.25.1
+2.34.1
 

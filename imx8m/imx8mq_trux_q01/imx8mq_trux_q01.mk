@@ -5,7 +5,7 @@
 CONFIG_REPO_PATH := device/nxp
 CURRENT_FILE_PATH :=  $(lastword $(MAKEFILE_LIST))
 IMX_DEVICE_PATH := $(strip $(patsubst %/, %, $(dir $(CURRENT_FILE_PATH))))
-IMX_DEVICE_PATH := device/trucrux/imx8m/trux_mx8mq
+IMX_DEVICE_PATH := device/trucrux/imx8m/imx8mq_trux_q01
 BCM_FIRMWARE_PATH := device/trucrux/imx8m/AP6236S-firmware
 PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := true
 
@@ -18,9 +18,9 @@ include $(CONFIG_REPO_PATH)/imx8m/ProductConfigCommon.mk
 # -------@block_common_config-------
 
 # Overrides
-PRODUCT_NAME := trux_mx8mq
-PRODUCT_DEVICE := trux_mx8mq
-PRODUCT_MODEL := TRUX_IMX8MQ
+PRODUCT_NAME := imx8mq_trux_q01
+PRODUCT_DEVICE := imx8mq_trux_q01
+PRODUCT_MODEL := trucrux
 
 TARGET_BOOTLOADER_BOARD_NAME := DVP
 
@@ -350,7 +350,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(BCM_FIRMWARE_PATH)/bcmdhd/BCM4362A2_001.003.006.1012.1017.hcd:vendor/firmware/bcmdhd/BCM4362A2_001.003.006.1012.1017.hcd \
     $(BCM_FIRMWARE_PATH)/bcmdhd/BCM4362A2.hcd:vendor/firmware/bcmdhd/BCM4362A2.hcd \
-    $(BCM_FIRMWARE_PATH)/bcmdhd/clm_bcm43752a2_ag.blobvendor/firmware/bcmdhd/clm_bcm43752a2_ag.blob \
+    $(BCM_FIRMWARE_PATH)/bcmdhd/clm_bcm43752a2_ag.blob:vendor/firmware/bcmdhd/clm_bcm43752a2_ag.blob \
     $(BCM_FIRMWARE_PATH)/bcmdhd/fw_bcm43752a2_ag_apsta.bin:vendor/firmware/bcmdhd/fw_bcm43752a2_ag_apsta.bin \
     $(BCM_FIRMWARE_PATH)/bcmdhd/fw_bcm43752a2_ag.bin:vendor/firmware/bcmdhd/fw_bcm43752a2_ag.bin \
     $(BCM_FIRMWARE_PATH)/bcmdhd/nvram_ap6275s_m2.txt:vendor/firmware/bcmdhd/nvram_ap6275s_m2.txt \

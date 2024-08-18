@@ -36,7 +36,7 @@ readonly _EXTPARAM_BRANCH="android-13.0.0_1.2.0-trux"
 readonly TRUCRUX_PATCHS_DIR="${SCRIPT_POINT}/platform"
 readonly TRUCRUX_SH_DIR="${SCRIPT_POINT}/sh"
 VENDOR_BASE_DIR=${ANDROID_DIR}/vendor/trucrux
-LIBBT=$(readlink -f "${ANDROID_DIR}/hardware/broadcom/libbt")
+# LIBBT=$(readlink -f "${ANDROID_DIR}/hardware/broadcom/libbt")
 SEPOLICY=$(readlink -f "${ANDROID_DIR}/system/sepolicy")
 
 

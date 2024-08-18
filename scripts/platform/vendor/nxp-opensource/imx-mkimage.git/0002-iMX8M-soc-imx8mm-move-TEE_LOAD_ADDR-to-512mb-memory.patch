@@ -1,0 +1,25 @@
+From 98566de3123244c8a13bdd2a730da5438638d5a0 Mon Sep 17 00:00:00 2001
+From: shindesaahil <sahil.shinde@trunexa.com>
+Date: Sun, 18 Aug 2024 11:07:19 +0530
+Subject: [PATCH 2/5] iMX8M: soc: imx8mm: move TEE_LOAD_ADDR to 512mb memory
+
+---
+ iMX8M/soc.mak | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/iMX8M/soc.mak b/iMX8M/soc.mak
+index a45a015..766e7e4 100644
+--- a/iMX8M/soc.mak
++++ b/iMX8M/soc.mak
+@@ -32,7 +32,7 @@ PLAT = imx8mm
+ HDMI = no
+ SPL_LOAD_ADDR = 0x7E1000
+ SPL_FSPI_LOAD_ADDR = 0x7E2000
+-TEE_LOAD_ADDR ?= 0xbe000000
++TEE_LOAD_ADDR = 0x56000000
+ ATF_LOAD_ADDR = 0x00920000
+ VAL_BOARD = val
+ #define the F(Q)SPI header file
+-- 
+2.34.1
+
